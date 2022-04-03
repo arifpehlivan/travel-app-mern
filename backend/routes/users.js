@@ -32,7 +32,7 @@ router.post("/login", async(req,res)=>{
         res.status(200).json({_id:user._id,username:user.username});
     } catch (err) {
          //console.log(err);
-         res.status(500).json(err);
+         //res.status(500).json(err);
     }
 });
 
