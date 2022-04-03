@@ -1,45 +1,29 @@
-// import * as React from 'react';
-// import Map from 'react-map-gl';
-// import 'mapbox-gl/dist/mapbox-gl.css';
-
-
-// function App() {
-// const MAPBOX="pk.eyJ1IjoiYXJpZnBlaGxpdmFuIiwiYSI6ImNsMWlseWVubjB1c2kzZHF1ZW1udjB6d3kifQ.5J79vaEUq-MGwMIFSeWAwg"
-  
-//   const [viewState, setViewState] = React.useState({
-//     longitude: -100,
-//     latitude: 40,
-//     zoom: 3.5
-//   });
-//   return (
-//     <Map
-//     {...viewState}
-//     mapboxAccessToken={MAPBOX}
-//     onMove={evt => setViewState(evt.viewState)}
-//     mapStyle="mapbox://styles/mapbox/streets-v9"
-//   />
-//   );
-// }
-
-import * as React from 'react';
-import Map, {Marker} from 'react-map-gl';
+import  React, { useState } from 'react';
+import  {Map,Marker} from 'react-map-gl';
+import { Room } from "@material-ui/icons";
 
 function App() {
+  const [viewport, setViewport] = useState({
+    latitude: 47.040182,
+    longitude: 17.071727,
+    zoom: 4,
+  });
   return (
     <Map
+      {...viewport}
       initialViewState={{
-        longitude: 41,
-        latitude: 29,
-        zoom: 4
+        longitude: 2.349014,
+        latitude: 48.864716,
+        zoom: 3
       }}
       mapboxAccessToken={"pk.eyJ1IjoiYXJpZnBlaGxpdmFuIiwiYSI6ImNsMWlseWVubjB1c2kzZHF1ZW1udjB6d3kifQ.5J79vaEUq-MGwMIFSeWAwg"}
       style={{width: "100vw", height: "100vh"}}
       mapStyle="mapbox://styles/mapbox/streets-v9"
+      onViewportChange={(viewport) => setViewport(viewport)}
     >
-      <Marker longitude={41} latitude={29} anchor="bottom" >
-        <div>You are here</div>
-      {/* <img src="./pin.png" /> */}
-    </Marker>
+      <Marker longitude={2.349014} latitude={48.864716}>{/*offsetleft={-10} offsetTop={-10}*/}
+        <Room style={{fontSize:viewport.zoom}}/>
+      </Marker>
     </Map>
   );
 }
